@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>css index</title>
+    </head>
+    <body>
+         <!-- .=class -->
+         <!-- 우선순위 !important<-style<-class 맨 뒷부분<-중복될시 맨 아래 -->
+         <!-- hex color 로 색상 찾기 -->
+      <style>
+         .text-color{
+            color:orange;
+            background-color:red;
+         }
+          .blue {
+               /* 주석을 작성할 수 있습니다. */
+             /* color:#03a5fc;  */ 
+             /*  color: rgb(3, 165, 252);  */
+             /* hue(색상값), saturation(채도), Lightness(명도) */     
+                 color: hsl(180,98%,50%);
+                background-color:green;
+              }
+          .green {
+             color:green;
+             background-color:red;
+             }
+           strong{
+            /* color:white; */
+            /* color: #ffffff; = color: #fff: */
+            /* color: #000; = color: #000 */
+            color:pink;
+            background: blue;
+            }
+           /* span태그 범용으로 쓰는 강죠 */
+           span{
+               background-color:pink;
+            }
+           .em {
+             color:blue;
+             background-color:yellow;
+             }
+      </style>
+      <!-- CSS - Cascading style sheets -->
+       <div>
+      <p class="blue"><strong>아무거나</strong></p>
+      <h1 class="text-color blue blue">이곳은 문서의 제목 입니다.</h1>
+      </div> 
+     <p class="text-color blue">가을 재촉하는 <em class="em">비 전국에</em> 비가 내리는 29일 오전 서울 종로구 세종대로 인근에서 시민들이 우산을 쓴 채 걸어가고 있다</p>
+      <p class="text-color" >30일부터는 남부 지역을 중심으로 시간당 30~60㎜의 비가 내릴 것으로 예상된다.</p>
+      <p style="color:red;">하이쿠이의 <strong>구체적</strong> 이동방향이 <span>분석될</span> 것으로 보인다.</p>
+      <p class="green">예측만 될 뿐 전 세계 수치 모델마다 다른 진로를 예측하는 등 경로가 달라질 가능성은 크다.</p>
+      <p>부근 해상에 있는 19호 <strong class="em">열대저압부는</strong> 29일 오전 3시 11호 태풍 <em>'하이쿠이'</em>로 발달할 전망이다.</p>
+    </body> 
+</html>

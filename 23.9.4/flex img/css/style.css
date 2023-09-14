@@ -1,0 +1,32 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+img{
+    width:100%;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.gallery{
+    background-color: aqua;
+    display:flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    /* align-content 각 행이 아니라 전체에서 자식요소를 교차축으로 중앙 정렬할때 사용 */
+    align-content:center;
+    justify-content: center;
+    /* view width, viewport heught- 화면 브라우저 사이즈만큼 차지할수 있다 */
+}
+/* .image-wrapper{
+    display:flex;
+} */
+.gallery > .image-wrapper{
+    padding:10px;
+    width:calc(100%/3);    
+    /* flex-basis:calc(100%/2); */
+    flex-grow: 0;
+    flex-shrink: 1;
+}

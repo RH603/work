@@ -1,0 +1,73 @@
+.box{
+    width:100px;
+    height:100px;
+    border: 1px solid red;
+    background-color: brown;
+    border-radius:30px;
+    /* display:lnline-block; width, height 값을 적용할때 활용 */
+    display:inline-block;
+}
+#frist{
+   
+    background-color:aquamarine;
+    /* transition: transform 2000ms(움직임) 500ms(지연) ease; */
+    transition: transform 1s ease;
+    transform-origin: right bottom;
+    margin:10px;
+}
+#frist:hover{  
+    transform:rotate(45deg);
+}
+#frist:active{
+    transform: rotate(360deg);
+}
+#second{
+  
+    background-color: black;
+    transform:scale(1);
+    transition: transform 500ms ease;
+}
+#second:hover{
+    height:200px;
+    /* transform:scale(2); */
+}
+#second:active{
+    transform:scale(3);
+}
+#third{
+    
+    background-color: orange;
+    transition: transform 500ms ease;
+    /* skew(x값,y값) */
+    transform:skew(0deg,0deg);
+    /* transform:skewx(30deg); */
+    /* transfrom:skewy(30deg); */
+}
+#third:hover{
+    transform: skew(35deg,20deg);
+}
+#third:active{
+    transform:skew(40deg,25deg);
+}
+#t1{
+    transform: translatex(0%);
+    transition: transform 500ms cubic-bezier(0, 0.93, 1, 1.95);
+}
+#t1:hover{
+    transform: translatex(50%);
+}
+#t2{
+    transform:translateY(0px);
+    transition: transform 200ms 500ms cubic-bezier(0.4,-0.32, 0.71, 1.54);
+}
+#t2:hover{
+    transform:translateY(30px);
+}
+#t3{
+    /* transform: translate(x값, y값); */
+    transform:translate(0px, 0px);
+    transition: transform 500ms cubic-bezier(0, 0.93, 1, 1.95);
+}
+#t3:hover{
+    transform:translate(50px, 50px);
+}

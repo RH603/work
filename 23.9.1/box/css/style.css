@@ -1,0 +1,19 @@
+#rect{
+    width:150px;
+    height:150px;
+    background-color:rgb(133, 59, 59);
+    border:10px solid black;
+    box-sizing:border-box;
+    padding:10px;
+    overflow:hidden; 
+    margin-bottom: 5px;
+}
+.box{
+    width:150px;
+    height: 150px;
+    background-color:rgb(28, 212, 151);
+    border:20px solid transparent;
+    box-sizing:border-box;
+    padding:20px;
+    overflow:hidden;
+}

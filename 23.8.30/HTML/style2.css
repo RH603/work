@@ -1,0 +1,53 @@
+/* -------------
+ul li:nth-child(1), :nth-child(5){
+	background-color: blue;
+	color: yellow;
+} 
+----------------*/
+/* 홀수번째 odd, 짝수번째 even last-child(마지막) frist-child(첫번째) */
+/* solid (직선) dashed(점선) dotted(점) */
+ul li{
+	color:yellow;
+}
+ul li:nth-child(odd){
+background-color:red;
+}
+ul li:nth-child(even){
+background-color:blue;
+}
+
+ol li:nth-child(1){
+	background-color: black;
+	color: orange;
+}
+ol li{
+	background-color: yellow;
+	color: orange;
+}
+ol li:last-child{
+	background-color: green;
+}
+ul{
+	/* border-width: 4px; */
+	/* border-style: solid; */
+	/* border-style: dashed; */
+	/* border-style:dotted;*/
+	/* border-color: black; */
+	border: 3px solid black;
+	border-radius: 70px;
+	overflow: hidden;
+}
+
+ol{
+	border-top: 4px solid pink;
+	border-right: 4px solid red;
+	border-left: 4px solid blue;
+	border-bottom: 4px solid orange;
+	/* border: 4px dotted pink; */
+	/* border-radius: 50px; */
+	border-top-left-radius: 20px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 50px;
+	overflow: hidden;
+}

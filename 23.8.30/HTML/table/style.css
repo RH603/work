@@ -1,0 +1,48 @@
+.red{
+	color:red;
+}
+
+table{
+	border:1px solid black;
+	border-collapse: collapse;
+}
+table thead{
+	border:1px solid black;
+}
+table tr{
+	border-bottom: 1px solid black;
+}
+table thead th:nth-child(1){
+	border-right:1px solid black;
+}
+table tbody tr:nth-child(odd){
+	background-color: #eee;
+}
+table th,
+table td{
+	border-right:1px solid black;
+	/* padding-top: 5px;
+	padding-left: 20px;
+	padding-right: 10px;
+	padding-bottom: 50px; */
+	/* --네방향을 모두 줄때 -- */
+	 /* padding: 20px; */
+	 /*padding: 10px (상,하) 20px(좌,우); */
+	padding:10px 10px;
+	/* padding: 10px(상) 20px(좌,우) 50px(하) */
+	/* padding: 10px 20px 50px; */
+	/* padding: 10px 상 20px 우 30px 하 40px 좌 */
+	/* padding: 10px 20px 30px 40px; */
+
+}
+table td:last-child{
+	/* 수평 정렬 right, left center */
+	/* text-align: center; */
+	text-align: right;
+	vertical-align: top;
+	/* vertical(수직정렬) - top middle bottom */
+}
+table th{
+	text-align: left;
+	font-weight: bold;
+}

@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* .contanier{
+    width:100%;
+    max-width: 1200px;
+} */
+.box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    
+}
+.box .sticker{
+    flex-basis: calc(100%/5);
+    background-color: black;
+    color: white;
+    /* padding: 0px; */
+    border-radius: 20px;
+    font-size: 25px;
+}
+.sticker-icon{
+    padding-right: 10px;
+}

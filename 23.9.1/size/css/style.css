@@ -1,0 +1,47 @@
+ #header{
+    font-size:32px;
+} 
+ #header h2{
+    font-size:1rem;
+}
+.list{
+    font-size:60px;
+}
+.list li{
+    font-size:0.8rem;
+}
+.btn{
+    padding: 0.5rem 2rem;
+    background-color:antiquewhite;
+    border:0;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius:40PX;
+    color:rgb(28, 180, 180);
+    cursor: move;
+    /* 컨트롤 + 스페이스바 = 단어 미리 보기*/
+    /* transition-property:all;
+    transition-duration:200ms;
+    transition-timing-function: ease; */
+    transition : all 500ms ease;
+}
+.btn:hover{
+    background-color:brown;
+    color:orange;
+}
+.btn:active{
+    background-color:black;
+    color:orchid;
+}
+.btn-primary{
+    background-color:blue;
+    color:white;
+}
+/* .btn-primary:hover{
+    background-color: red;
+    color:yellow;
+} */
+.btn-primary:active{
+    background-color:blueviolet;
+    color:green;
+}

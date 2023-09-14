@@ -1,0 +1,18 @@
+.big{
+font-size: 32px;
+font-weight: bold;
+}
+.small{
+font-size: 16px;
+/* font-weight: 100~900 백단위로 넣을수 있다 */
+font-weight: 600;
+}
+.red{
+/* color:red; */
+/* color:rgb(245, 72, 66); */
+color:hsl(2,90%,61%);
+background-color:yellow;
+}
+.back{
+background-color:yellow;
+}

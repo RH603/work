@@ -1,0 +1,29 @@
+.btn{
+    color:#fff;
+    background-color:rgb(17, 17, 223);
+    border:3px solid rgb(2, 15, 71);
+    padding: 10px 20px;
+    font-size: 30px;
+    display:inline;
+    /* display:block; */
+    /* cursor 사용자에게 커서를 바꿔서 보여줌 */
+    cursor: pointer;
+    /* 1000ms = 1s */
+    transition: all 200ms ease;
+    /* transition은 before 상태에 배치하는것이 좋다 */
+    /* margin: 30px; */
+    /* box-sizing: border-box; */
+    /* margin:0; */
+}
+
+/* : = 의사 클래스 */
+.btn:hover{
+        background-color:red;
+        border-radius:50px;
+        color:yellow;
+}
+.btn:active{
+    background-color:yellow;
+    color:black;
+    font-size: 30px;
+}

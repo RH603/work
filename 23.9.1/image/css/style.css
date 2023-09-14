@@ -1,0 +1,52 @@
+img{
+    width:400px;
+    height:400px;
+    /* object-fit:contain; */
+    /* object-fit:content = 비율 유지 */
+    /* object-fit:fill; */
+    /* object-fit:fill = 비율 무시 */
+    object-fit:cover ;
+    /* object-fit:cover = 비율을 유지 하며 화면을 채운후 나머지는 자름 */
+    background-color:black;
+    /* filter:blur(6px) */
+    filter:grayscale(100%);
+    transition:all 5000ms ease;
+    cursor:pointer;
+    transform: scale(1);
+    border-radius:50%;
+    display:block;
+}
+ img:hover{
+    filter:grayscale(0);
+    transform: scale(1.5);
+}
+img:active{
+    filter:grayscale(50%);
+    transform: scale(2);
+}
+h1{
+    display:inline;
+}
+h1:hover{
+    color:red;
+    cursor:pointer;
+}
+h1:active{
+    color:blue;
+    /* border:1px solid black; */
+    transform:scale(0.5);
+}
+a{
+    color:#222;
+    text-decoration:none;
+}
+a:link{
+    text-decoration:none;
+}
+a:visited{
+    color:red;
+}
+button{
+    display:block;
+    background-color:blue;
+}

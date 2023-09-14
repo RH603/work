@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stlyesheet" href="css/stlye.css">
+</head>
+
+<body>
+    <form autocomplete="off">
+        <div>
+            <label for="username">사용자 이름:</label>
+            <!-- self closing tag = input -->
+            <input id="username" type="text" name="senduername" placeholder="사용자 이름을 작성해주세요">
+            <br>
+            <label for="passward">passward:</label>
+            <input id="passward" type="password" placeholder="비밀번호를 입력하세요"
+            name="sendpassword">
+            <!-- 알트 + 쉬프트 + f = 자동 줄 마춤 -->
+        </div>
+        <div>
+            <label for="checkbox">개인정보 사용에 동의하시겠습니까?</label>
+            <input type="checkbox" id="checkbox" checked>
+        </div>
+        <button type="submit">제출</button>
+        <br>
+        <label>새로운 입력
+            <input type="text">
+        </label>
+        <br>
+        <select name="" id="">
+            <option value="">사과</option>
+            <option value="">오렌지</option>
+            <option value="">수박</option>
+            <option value="">딸기</option>
+        </select>
+        <button type="submit">제출</button>
+        </form>
+</body>
+
+</html>

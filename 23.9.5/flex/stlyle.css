@@ -1,0 +1,85 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+.flex{
+    background-color: pink;
+    display:flex;
+    width:100%;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    /* 중앙 정렬 축약형 
+    margin:0 auto; */
+    /* justify-content: flex-end; */
+    height:400px;
+    /* flex-direction: row-reverse; */
+    /* justify-content: space-between; */
+    /* justify-content: space-around; 자식 요소를 균등하게 배치 */
+    align-items: center;
+    justify-content: center;
+}
+.flex div{
+    flex-basis:calc(100%/5);
+    
+}
+.container{
+    display:flex;
+    width:100%;
+    max-width: 600px;
+    height: 400px;
+    background-color: yellow;
+    margin:0 auto;
+    flex-wrap: wrap;
+    /* align-content: center; */
+    
+}
+.container div{
+    flex-basis: calc(100%/5);
+    /* flex-grow: 0; */
+}
+.container div:nth-child(n+4){
+    color:white;
+}
+.container > div:nth-child(1),
+.flex > div:nth-child(1){
+    background-color: hsla(39, 89%, 89%, 0.918);
+    flex-basis: calc(100%/2.5);
+    /* flex-grow:2; */
+}
+.container > div:nth-child(2),
+.flex > div:nth-child(2){
+    background-color: hsla(39, 89%, 79%, 0.918);
+    
+}
+.container > div:nth-child(3),
+.flex > div:nth-child(3){
+    background-color: hsla(39, 89%, 69%, 0.918);
+}
+.container > div:nth-child(4),
+.flex > div:nth-child(4){
+    background-color: hsla(39, 89%, 59%, 0.918);
+}
+.container > div:nth-child(5),
+.flex > div:nth-child(5){
+    background-color: hsla(39, 89%, 49%, 0.918);
+}
+.container > div:nth-child(6),
+.flex > div:nth-child(6){
+    background-color: hsla(39, 89%, 39%, 0.918);
+}
+.container > div:nth-child(7),
+.flex > div:nth-child(7){
+    background-color: hsla(39, 89%, 29%, 0.918);
+    flex-basis: calc(300%/5);
+}
+.container > div:nth-child(8),
+.flex > div:nth-child(8){
+    background-color: hsla(39, 89%, 19%, 0.918);
+    
+}
+.container > div:nth-child(9),
+.flex > div:nth-child(9){
+    background-color: hsla(39, 89%, 09%, 0.918);
+}

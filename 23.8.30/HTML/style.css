@@ -1,0 +1,23 @@
+.text-color{
+	color:pink;
+	font-size:18px;
+	font-weight:500;
+}
+.text{
+	font-weight:700;
+}
+.text2{
+ 	font-weight:300;
+}
+ul { 
+	background-color: green;
+}
+ul li{
+	background-color:yellow;
+}
+ul li ul{
+	background-color:red;
+}
+ul li ul li{
+	background-color:orange;
+}

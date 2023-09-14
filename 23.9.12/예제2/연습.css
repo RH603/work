@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    width:100%;
+    max-width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    /* object-fit: cover; */
+}
+.gallery{
+    width: 100%;
+    max-width: 100vw;
+    display:flex;
+    /* flex-wrap: wrap; */
+    height: 100vh;
+}
+.gallery img{
+    flex-basis: 50%;
+}
