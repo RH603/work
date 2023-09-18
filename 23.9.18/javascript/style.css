@@ -1,0 +1,18 @@
+#title{
+    color:blue ;
+    background-color: black;
+    font-size: 10px;
+}
+#bar{
+    background-color: rgb(123, 142, 158);
+    height: 50px;
+    width: 100%;
+}
+#graph{
+    width: 50%;
+    height: 100%;
+    background-color: red;
+
+
+    transition: all 2s ease;
+}
