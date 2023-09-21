@@ -27,7 +27,11 @@ console.log(title)
 // console.log(buttons.length)
 
 for (let i = 0; i < buttons.length; i++) {
-
+    // 초기화
+    // 첫번째 버튼에 check 클래스 추가
+    buttons[0].classList.add('check')
+    // 첫번째 데이터 타이틀을 figcation에 할당
+    title.textContent = data[0].title
     buttons[i].addEventListener('click', () => {
         // console.log(data[i].url)
 
