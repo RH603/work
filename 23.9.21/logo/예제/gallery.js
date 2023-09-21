@@ -34,5 +34,11 @@ for (let i = 0; i < buttons.length; i++) {
         // 이미지 태그의 src 속성에 data[i].url 값 할당
         image.src = data[i].url
         title.textContent = data[i].title
+        // 모든 버튼에서 check 클래스 제거
+        for(let i=0;i<buttons.length;i++){
+            buttons[i].classList.remove('check')
+        }
+        // 클릭한 버튼에 check 클래스 추가
+        buttons[i].classList.add('check')
     })
 }
