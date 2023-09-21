@@ -55,4 +55,4 @@ if(9000 > money){
 }
 
 //3항 연산자
- money < 9000 ? console.log('짜장면') : console('짬뽕')
+ money < 9000 ? console.log('짜장면') : console.log('짬뽕')
