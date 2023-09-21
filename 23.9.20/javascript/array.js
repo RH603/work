@@ -68,7 +68,7 @@ for (let i = 0; i < lunch.length; i++) {
     // console.log(lunch[i])
     // console.log(lunch[i].name)
     // console.log(lunch[i].cost)
-    console.log(`${lunch[i].name}의 가격은 ${lunch[i].cost.toLocaleString('ko-kr')}원 입니다`)
+    console .log(`${lunch[i].name}의 가격은 ${lunch[i].cost.toLocaleString('ko-kr')}원 입니다`)
     // totalCost = totalCost + lunch[i].cost
     totalCost += lunch[i].cost
     // list.innerHTML += `<li>${lunch[i].name}:${lunch[i].cost}</li>`
