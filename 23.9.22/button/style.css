@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    height: 100vh;
+    position: relative;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+.text{
+    font-size:32px;
+    padding: 2rem;
+}
+aside {
+    background-color: white;
+    position: relative;
+    width: 320px;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    right: -320px;
+    transition: all 0.2s cubic-bezier(1, 0, 0, 1);
+    padding: 1rem;
+    line-height: 1.75;
+    z-index: 1000;
+}
+#sidebar.open{
+    right:0;
+}
+
+button {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 0;
+    left: -48px;
+    background-color: black;
+    color: white;
+    border: 0;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.2s linear;
+    backdrop-filter: blur(5px);
+}
+.overlay.open{
+    opacity: 1;
+}
