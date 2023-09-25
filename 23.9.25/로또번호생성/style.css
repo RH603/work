@@ -1,0 +1,17 @@
+/* ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap:1rem;
+}
+li{
+    width: 40px;
+    height: 40px;
+    background-color: blue; 
+    /color: white; 
+ } */
+#generate.processing{
+    cursor: pointer;
+    background-color: #bbb;
+    pointer-events: none;
+}
