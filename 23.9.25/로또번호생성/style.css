@@ -1,4 +1,4 @@
-/* ul{
+ul{
     list-style: none;
     display: flex;
     justify-content: center;
@@ -8,8 +8,8 @@ li{
     width: 40px;
     height: 40px;
     background-color: blue; 
-    /color: white; 
- } */
+    color: white; 
+ }
 #generate.processing{
     cursor: pointer;
     background-color: #bbb;
