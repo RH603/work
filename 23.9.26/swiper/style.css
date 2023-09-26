@@ -1,0 +1,27 @@
+.swiper {
+    width: 240px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.swiper .first{
+    background-image: url(https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=400);
+    background-position: center;
+    background-size: cover;
+}
+.swiper .second{
+    background-color: orange;
+}
+.swiper .third{
+    background-color: pink;
+}
+.swiper-pagination-bullet{
+    background-color: white;
+    border:1px solid black
+}
+.swiper-pagination-bullet-active{
+    background-color: black;
+    width:50px;
+    border-radius: 4px;
+    transition: all 500ms ease;
+}
