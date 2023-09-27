@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body{
+    width:100%;
+    height: 100%;
+    background-color: hsl(0, 79%, 6%);
+}
+.circle{
+    position: absolute;
+    top:0%;
+    left:0%;
+    display:block;
+    width:100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 99999px;
+    animation-name: bokeh;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+@keyframes bokeh{
+    0%{
+        transform: scale(1);
+        opacity: 0;
+    }
+    50%{
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 0;
+    }
+}

@@ -10,6 +10,7 @@ function circleSize(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+
 for(let i=0; i<50; i++){
     const circle = document.createElement('span')
     const wonSize = circleSize(100, 150)
