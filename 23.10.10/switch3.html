@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var x = prompt("가위 바위 보", "가위, 바위, 보 중 하나를 입력하세요");
+    var y = prompt("가위 바위 보", "가위, 바위, 보 중 하나를 입력하세요");
+    if (x == "가위") {
+      switch (x == "가위") {
+        case y == "가위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 비겼습니다");
+          break;
+        case y == "바위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 두번째 사람 승!!!");
+          break;
+        case y == "보":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 첫번째 사람 승!!!");
+          break;
+      }
+    } else if (x == "바위") {
+      switch (x == "바위") {
+        case y == "가위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 첫번째 사람 승!!!");
+          break;
+        case y == "바위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 비겼습니다");
+          break;
+        case y == "보":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 두번째 사람 승!!!");
+          break;
+      }
+    } else {
+      switch (x == "보") {
+        case y == "가위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 두번째 사람 승!!!");
+          break;
+        case y == "바위":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 첫번째 사람 승!!!");
+          break;
+        case y == "보":
+          document.write("첫번째 사람 : " + x + "<br>");
+          document.write("두번째 사람 : " + y + "<br>");
+          document.write("결과 : 비겼습니다");
+          break;
+      }
+    }
+  </script>
+</html>
