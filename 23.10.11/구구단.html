@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    table {
+      margin: 20px;
+      float: left;
+    }
+    table,
+    th {
+      border: solid 1px #ccc;
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      padding: 10px 15px;
+    }
+    th {
+      font-weight: bold;
+      background-color: bisque;
+    }
+    td {
+      border: solid 1px #ccc;
+    }
+  </style>
+  <body>
+    <h2>구구단</h2>
+  </body>
+  <script>
+    for (let j = 1; j < 10; j++) {
+      document.write("<table><tr><th>" + j + "단 <br></th></tr>");
+      for (let i = 1; i < 10; i++) {
+        document.write(
+          "<tr><td>" + j + " x " + i + " = " + j * i + "<br> </td></tr>"
+        );
+      }
+      document.write("</table>");
+    }
+  </script>
+</html>
