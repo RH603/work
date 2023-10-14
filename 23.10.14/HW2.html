@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var height = 170
+    var weight = 50
+    var normal = 23
+
+    var BMI = (weight/((height/100)*(height/100)))
+    BMI = BMI.toFixed(0) // toFixed() = (N)번째 소수점자릿수 까지 출력 
+    document.write("신장 = " + height + "<br>")
+    document.write("몸무계(kg) = " + weight+ "<br>")
+    document.write("BMI = " +BMI+ "<br>")
+    var result = (BMI>23? "비만입니다":"비만이 아닙니다")
+    document.write("판정결과 : " +result+ "<br>")
+</script>
+</html>
