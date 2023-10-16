@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let sum = 0;
+    document.write("<h2> 1부터 200까지의 짝수의 합(continue 사용)</h2>");
+    for (let i = 0; i <= 200; i++) {
+      if (i % 2 == 1) {
+        continue;
+      }
+      sum = sum + i;
+    }
+    document.write(`<h3>합 :${sum}</h3>`);
+    document.write("<hr>");
+    let sum2 = 0;
+
+    // while (true) {
+    //   let i = parseInt(
+    //     prompt("숫자를 입력하세요(0을 입력 하면 종료 됩니다)", "1, 2, 3, ...")
+    //   );
+    //   sum2 = sum2 + i;
+    //   if (i == 0) {
+    //     break;
+    //   }
+    // }
+    // document.write(sum2);
+    // document.write("<hr>");
+
+    // 1~10 까지 반복되는 2개의 for 문을 이용해서
+    // i 와 k의 더한 합이 3의 배수일때만 출력
+    // ex) i : 00, k : 00 결과 :00
+
+    let sum3 = 0;
+    for (let i = 1; i <= 10; i++) {
+      for (let k = 1; k <= 10; k++) {
+        sum3 = i + k;
+        if (!(sum3 % 3 == 0)) {
+          continue;
+        }
+        document.write(`i : ${i} k : ${k} 결과 : ${sum3} <br>`);
+      }
+    }
+    document.write("<hr>");
+    for (let i = 1; i <= 100; i++) {
+      if (i % 2 == 0 && i % 3 == 0) {
+        document.write(`${i} <br>`);
+      }
+    }
+    document.write("<hr>");
+
+    sum = 0;
+    while (true) {
+      let inputNum1 = +prompt("첫번째를 입력하세요");
+      let inputNum2 = parseInt(prompt("두번째를 입력하세요"));
+      sum = inputNum1 + inputNum2;
+      sum = sum + sum;
+      if (inputNum1 + inputNum2 >= 100) {
+        document.write(
+          `첫번째 숫자 : ${inputNum1} + 두번째 숫자 ${inputNum2} 합 = ${
+            inputNum1 + inputNum2
+          }, ${sum} <br>`
+        );
+      } else if (inputNum1 == 0 && inputNum2 == 0) {
+        break;
+      } else if (sum > 500) {
+        break;
+      }
+    }
+  </script>
+</html>

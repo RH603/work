@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    for (let i = 0; i < 5; i++) {
+      for (let j = 5; j > i; j--) {
+        document.write("*");
+      }
+      for (let k = 0; k < i; k++) {
+        document.write("&nbsp");
+      }
+      for (let y = 0; y < i; y++) {
+        document.write("&nbsp");
+      }
+      for (let x = 5; x > i; x--) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+  </script>
+</html>
