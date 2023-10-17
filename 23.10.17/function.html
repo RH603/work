@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function sub(a, b) {
+        return a + b;
+      }
+      window.onload = function () {
+        // var res = sub(4,5)
+        // document.getElementById("aa").innerHTML=res
+        document.getElementById("aa").innerHTML = sub(4, 5);
+      };
+    </script>
+  </head>
+  <body>
+    <p id="aa"></p>
+  </body>
+  <script>
+    //지역 변수
+    function localNum() {
+      var num = 10;
+      document.write(
+        `함수 내부에서 변수 num 의 타입은 ${typeof num}입니다 <br>`
+      );
+    }
+    localNum();
+    document.write(
+      `함수 호출이 끝난 뒤 변수 num 의 타입은 ${typeof num}입니다<br>`
+    );
+    function localNum() {
+      num1 = 10;
+      document.write(`함수 내부에서 변수 num1 의 값은 ${num1}입니다 <br>`);
+    }
+    localNum();
+    document.write(`함수 호출이 끝난 뒤 변수 num1 의 값은 ${num1}입니다<br>`);
+
+    //전역 변수
+    var num3 = 10;
+    function globalNum() {
+      var num3 = 20;
+      document.write(`함수 내부에서 변수 num3의 값은 ${num3} 입니다 <br>`);
+      document.write(
+        `함수 내부에서 전역변수 num3의 값은 ${window.num3} 입니다 <br>`
+      );
+      //   num3 = 20;
+    }
+    globalNum();
+    document.write(`함수 호출이 끝난 뒤 변수 num3의 값은  ${num3} 입니다 <br>`);
+
+    //함수 유효 범위
+    let x = 10,
+      y = 20;
+    function sub() {
+      return x - y;
+    }
+    document.write(`${sub()} <br>`);
+
+    function parentFunc() {
+      let x = 1,
+        y = 2;
+      function add() {
+        return x + y;
+      }
+      return add();
+    }
+    document.write(`${parentFunc()} <br>`);
+
+    //매개 변수
+
+    const addNum = (x, y, z) => {
+      console.log(`x = ${x} y = ${y} z = ${z}`);
+      return x + y + z;
+    };
+    document.write(`${addNum(1, 2, 3)}<br>`);
+    document.write(`${addNum(1, 2)}<br>`);
+    //arguments 객체
+    const addNum2 = function () {
+      let sum = 0;
+      //로직
+      //arguments 객체는 함수가 호출될 때 전달된 인수를 배열 형태로 저장하고 있습니다
+      for (let i = 0; i < arguments.length; i++) {
+        sum = sum + arguments[i];
+      }
+      return sum;
+    };
+    document.write(`${addNum2(1, 2, 3)}<br>`);
+    document.write(`${addNum2(1, 2)}<br>`);
+    document.write(`${addNum2(1)}<br>`);
+    document.write(`${addNum2()}<br>`);
+    console.log(addNum);
+    console.log(addNum2);
+  </script>
+</html>
