@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="input" placeholder="과일 이름을 입력해주세요" />
+    <button onclick="clickFunc()">CLICK</button>
+    <button onclick="clickFunc2()">제거</button>
+    <h2></h2>
+  </body>
+  <script>
+    const fruits = [];
+    const clickFunc = function () {
+      const input = document.getElementById("input");
+      fruits.push(input.value);
+      //   console.log(fruits);
+      const tag = document.querySelector("h2");
+      //   console.log(tag);
+      display(fruits, tag);
+      input.value = "";
+    };
+
+    const display = function (inputArr, tag) {
+      //   console.log(tag);
+      const pTag = document.createElement("p");
+      pTag.innerHTML = inputArr.toString();
+      tag.append(pTag);
+    };
+    const clickFunc2 = function () {
+      const input = document.getElementById("input");
+      fruits.pop();
+      const tag = document.querySelector("h2");
+      display(fruits, tag);
+    };
+  </script>
+</html>
