@@ -53,3 +53,18 @@
 .kate > ul > li:last-child {
   border-bottom: none;
 }
+.card{
+  border: 1px solid #eee;
+}
+.cart{
+  background-color: rgb(240, 207, 213);
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.body{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
