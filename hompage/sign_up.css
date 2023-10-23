@@ -1,0 +1,35 @@
+.container {
+  border: 1px solid black;
+  position: relative;
+  width: 400px;
+}
+ul {
+  list-style: none;
+  margin-bottom: 0px;
+  padding: 0;
+  padding-left: 10px;
+}
+li {
+  width: 100%;
+}
+span {
+  display: inline-block;
+  width: 120px;
+}
+.info {
+  position: absolute;
+  background-color: white;
+  top: -10px;
+  left: 10px;
+}
+.sub,
+.re {
+  width: 150px;
+  margin-top: 5px;
+}
+.man,
+.female {
+  display: flex;
+  margin-left: 80px;
+  gap: 80px;
+}
