@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal window</title>
+    <meta name="author" content="Hanho" />
+    <meta
+      name="descript"
+      content="HTML, CSS를 이용해 기존의 내용은 그래도 유지하면서 새로운 내용을 환기하여 보여주는 modal window를 제작할 수 있다."
+    />
+    <meta name="keywords" content="팝업, 모달, 모달창, 레이어 팝업, 환기" />
+    <link rel="stylesheet" href="css/common1.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>애국가</h1>
+    <p>동해물과 백두산이</p>
+    <h1>훈민정음</h1>
+    <p>나랏말싸미 중국에 달아</p>
+
+    <button type="button" id="modal_open">모달열기</button>
+    <div id="modal_back">
+      <div id="modal_win">
+        <div id="modal_header">
+          <h4>Modal window</h4>
+          <button type="button" id="modal_close">x</button>
+        </div>
+        <div id="modal_body">
+          asf asdd as aas afasf asfasf fgsd sdgds g sd s gd sgds gsg sg
+        </div>
+      </div>
+    </div>
+    <script>
+      // #modal_open이 눌리면 이런일이벌어질것이다
+      // #modal_back의 스타일 중 display 값을 "block" 으로 변경한다
+
+      //   document.getElementById("modal_open").onclick = function () {
+      //     document.getElementById("modal_back").style.display = "block";
+      //   };
+      $("#modal_open").click(function () {
+        $("#modal_back").fadeIn();
+      });
+      // #modal_close가 눌리면 이런일이벌어질것이다
+      // #modal_back의 스타일 중 display 값을 "none" 으로 변경한다
+      //   document.getElementById("modal_close").onclick = function () {
+      //     document.getElementById("modal_back").style.display = "none";
+      //   };
+      $("#modal_close").click(function () {
+        $("#modal_back").fadeOut();
+      });
+    </script>
+  </body>
+</html>
