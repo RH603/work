@@ -109,6 +109,12 @@ header .container {
   top: 30px;
   overflow: hidden;
   height: 55px;
+  transition: all 0.3s;
+  z-index: 10000;
+}
+#lnb:hover {
+  border-bottom: 1px solid #ccc;
+  height: 180px;
 }
 .main {
   float: left;
@@ -146,4 +152,15 @@ header .container {
   padding: 3px 15px;
   border-bottom: 1px solid #ccc;
   background-color: #fefefe;
+}
+footer {
+  background-color: #eb9980;
+  color: dodgerblue;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  text-align: right;
+  margin-top: 60px;
+}
+footer a {
+  color: #1e90ff;
 }

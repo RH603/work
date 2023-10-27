@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>버튼을 누르면 3초후에 문구가 계속해서 화면에 표시됩니다</p>
+    <button onclick="interval()">START</button>
+    <button onclick="stopInterval()">STOP</button>
+  </body>
+  <script>
+    // let pTa = document.querySelector("p");
+    var printpTag;
+    function interval() {
+      console.log("printpTag 실행전");
+      printpTag = setInterval(function () {
+        // let pTag = document.createElement("p");
+        // pTag.innerHTML = "계속해서 생성 되는 문구입니다";
+        // document.body.append(pTag);
+        // pTa.style.backgroundColor = `rgb(
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)}
+        //     )`;
+        // pTa.style.color = `rgb(
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)}
+        //     )`;
+        // pTag.style.backgroundColor = `rgb(
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)}
+        //     )`;
+        // pTag.style.color = `rgb(
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)},
+        //       ${parseInt(Math.random() * 256)}
+        //     )`;
+        let backGroundArr = [];
+        let colorArr = [];
+        for (let i = 0; i < 2; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (i == 0) {
+              backGroundArr.push(parseInt(Math.random() * 256));
+            } else {
+              colorArr.push(parseInt(Math.random() * 256));
+            }
+          }
+        }
+      }, 1000);
+      const pTag = document.querySelector("p");
+      pTag.style.backGroundArr = `rgb(${backGroundArr.toString()})`;
+      pTag.style.colorArr = `rgb(${colorArr.toString()})`;
+      console.log("printpTag 실행후");
+    }
+    function stopInterval() {
+      clearInterval(printpTag);
+    }
+  </script>
+</html>
