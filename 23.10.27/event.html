@@ -15,7 +15,41 @@
   </style>
   <body>
     <p id="pTag">이벤트 리스너 테스트</p>
-    <input type="text" id="inputTag" />
+    <form action="...">
+      <input type="text" id="inputTag" class="formEl" /><br />
+      <textarea id="textareaTag" cols="25" rows="5" class="formEl"></textarea
+      ><br />
+      <select class="changeTest">
+        <option>현대</option>
+        <option>기아</option>
+        <option>KG모빌리티</option></select
+      ><br />
+      <input
+        type="radio"
+        value="male"
+        id="male"
+        name="gender"
+        class="changeTest"
+      />
+      <label for="male">남자 </label>
+      <input
+        type="radio"
+        value="female"
+        id="female"
+        name="gender"
+        class="changeTest"
+      />
+      <label for="female">여자 </label>
+      <br />
+      <input type="checkbox" id="apple" class="changeTest" />
+      <label for="apple">사과</label>
+      <input type="checkbox" id="banana" class="changeTest" />
+      <label for="banana">바나나</label>
+      <input type="checkbox" id="orange" class="changeTest" />
+      <label for="orange">오렌지</label><br />
+      <input type="submit" value="제출" id="submitBtn" />
+      <input type="reset" value="초기화" id="resetBtn" />
+    </form>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
   </body>
@@ -62,14 +96,14 @@
     // });
 
     // mouseover 해당 요소 바깥에서 안으로 옴겼을 때
-    pTag.addEventListener("mouseover", function () {
-      alert("mouseover 이벤트 발생");
-    });
+    // pTag.addEventListener("mouseover", function () {
+    //   alert("mouseover 이벤트 발생");
+    // });
 
     // mouseout 해당 요소 안에서 바깥으로 옴겼을 때
-    pTag.addEventListener("mouseout", function () {
-      alert("mouseout 이벤트 발생");
-    });
+    // pTag.addEventListener("mouseout", function () {
+    //   alert("mouseout 이벤트 발생");
+    // });
 
     // contextmenu 마우스 오른쪽 버튼을 눌렀을때
     pTag.addEventListener("contextmenu", function (event) {
@@ -121,5 +155,59 @@
     //   alert("focus 이벤트 발생");
     // });
     inputTag.focus();
+
+    // blur - 요소가 포커스를 잃었을때
+    // inputTag.addEventListener("blur", function () {
+    //   alert("blur 이벤트 발생");
+    // });
+
+    // 폼 이벤트
+    // input - input, textarea 태그의 깂이 변경되었을 때
+    // 클래스로 요소 선택하기
+    // const classEl = document.getElementsByClassName("formEl");
+    const classEl = document.querySelectorAll(".formEl");
+    console.log(classEl);
+    // for (let i = 0; i < classEl.length; i++) {
+    //   classEl[i].addEventListener("input", function () {
+    //     alert("input 이벤트 발생");
+    //   });
+    // }
+    // classEl.forEach((el) => {
+    //   el.addEventListener("input", function () {
+    //     alert("input 이벤트 발생");
+    //   });
+    // });
+    // change - 선택 상자, 체크박스, 라디오 버튼의 상태가 변경 되었을 때
+    const changeEl = document.querySelectorAll(".changeTest");
+    changeEl.forEach(function (el) {
+      el.addEventListener("change", function () {
+        console.log(this);
+        // alert("change 이벤트 발생");
+      });
+    });
+
+    // submit, reset
+    const sumbitEl = document.getElementById("submitBtn");
+    const formEl = document.forms[0]; //HTMLCollection 이라는 object로 나오고 있음
+    const resetEl = document.getElementById("resetBtn");
+    formEl.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("sumbit 이벤트 발생");
+    });
+    formEl.addEventListener("reset", function () {
+      alert("reset 이벤트 발생");
+    });
+
+    //cut, copy, paste
+    const textareaEl = document.getElementById("textareaTag");
+    textareaEl.addEventListener("cut", function () {
+      alert("cut 이벤트 발생");
+    });
+    textareaEl.addEventListener("copy", function () {
+      alert("copy 이벤트 발생");
+    });
+    textareaEl.addEventListener("paste", function () {
+      alert("paste 이벤트 발생");
+    });
   </script>
 </html>
