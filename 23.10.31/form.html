@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <p>이 름 : <input type="text" name="name" /></p>
+      <p>
+        성 별 :
+        <input
+          type="radio"
+          name="gender"
+          value="남"
+          id="male"
+          value="남"
+        /><label for="male">남</label
+        ><input type="radio" name="gender" id="female" value="여" /><label
+          for="female"
+          >여</label
+        >
+      </p>
+      <p>
+        취 미 :
+        <input type="checkbox" name="hobby" id="travel" /><label for="travel"
+          >여행</label
+        >
+        <input type="checkbox" name="hobby" id="WM" /><label for="WM"
+          >영화감상</label
+        >
+        <input type="checkbox" name="hobby" id="reading" /><label for="reading"
+          >독서</label
+        >
+        <input type="checkbox" name="hobby" id="CSS" /><label for="CSS"
+          >css공부</label
+        >
+        <input type="checkbox" name="hobby" id="HTML" /><label for="HTML"
+          >HTML공부</label
+        >
+        <input type="checkbox" name="hobby" id="javascript" /><label
+          for="javascript"
+          >자바공부</label
+        >
+        <input type="checkbox" name="hobby" id="JQ" /><label for="JQ"
+          >제이퀴리</label
+        >
+      </p>
+      <input type="button" value="결과출력" id="resultBtn" /> <br /><br />
+    </form>
+    <textarea id="textareaTag" cols="100" rows="10" class="formEl"></textarea>
+  </body>
+  <script>
+    const resultBtn = document.getElementById("resultBtn");
+    resultBtn.addEventListener("click", function () {
+      const name = document.querySelector("input[name='name']").value;
+      const radioEl = document.querySelectorAll("input[name='gender']");
+      let radioVal;
+      radioEl.forEach((el) => {
+        if (el.checked) {
+          radioVal = el.value;
+        }
+      });
+      const checkboxEl = document.querySelectorAll("input[name='hobby']");
+      const checkboxArr = [];
+      checkboxEl.forEach((el) => {
+        if (el.checked) {
+          checkboxArr.push(el.id);
+        }
+      });
+      const textareaEl = document.querySelector("textarea");
+      textareaEl.innerHTML = `${name}씨 \n당신의 성별은${radioVal}이고,\n취미는 ${checkboxArr.toLocaleString()}이군요`;
+    });
+  </script>
+</html>

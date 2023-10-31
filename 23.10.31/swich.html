@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #container {
+      margin: 0 auto;
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, gray, white);
+      border: 3px solid gray;
+      border-radius: 50%;
+      position: relative;
+    }
+    #liner {
+      border: 5px solid black;
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #power {
+      font-size: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: gray;
+      filter: blur();
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="liner">
+        <div>
+          <iconify-icon
+            icon="mingcute:power-fill"
+            id="power"
+            onclick="change()"
+          ></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let powerColor = document.getElementById("power");
+    let liner = document.getElementById("liner");
+    function change() {
+      if (powerColor.style.color == "red") {
+        powerColor.style.color = "gray";
+        liner.style.border = "5px solid black";
+        powerColor.style.filter = "blur(0px)";
+      } else {
+        powerColor.style.color = "red";
+        powerColor.style.filter = "blur(2px)";
+        liner.style.border = "15px solid black";
+      }
+    }
+  </script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</html>
