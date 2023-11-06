@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화 꽃이 피었습니다</p>
+    </div>
+
+    <p id="pTag">은주는 예쁘다~~</p>
+
+    <div>
+      <p>사뿐히 즈려밣고 가시옵소서</p>
+    </div>
+  </body>
+  <script>
+    const el = $("#pTag");
+    // console.log(el.prop("tagName"));
+    // console.log(el.prop("tagName").toLowerCase());
+    const pTagArr = [
+      "무궁화 꽃이 피었습니다",
+      "",
+      "사뿐히 즈려밣고 가시옵소서",
+    ];
+    $("p").on("click", function () {
+      const index = $(this).parents().index();
+      console.log($(this).parents().index());
+      if ($(this).parents().prop("tagName") == "DIV") {
+        $(this).append(`<p style = "color = red">${pTagArr[index]}<p>`);
+      } else {
+        alert("작업 대상이 아닙니다");
+      }
+    });
+  </script>
+</html>

@@ -31,10 +31,16 @@
     $("p").on("click", function () {
       //   alert("클릭");
       const index = $(this).index();
+      // 요소 내부에 추가
       //   $(this).append(`<img src =" ../resources/img/${imgArr[index]}"/>`);
-      $(`<img src =" ../resources/img/${imgArr[index]}"/>`).appendTo(this);
+      // $(`<img src =" ../resources/img/${imgArr[index]}"/>`).appendTo(this);
       //   $(this).prepend(`<img src =" ../resources/img/${imgArr[index]}"/>`);
       //   $(`<img src =" ../resources/img/${imgArr[index]}"/>`).prependTo(this);
+      // 요소 외부의 추가
+      // $(this).after(`<img src =" ../resources/img/${imgArr[index]}"/>`);
+      // $(`<img src =" ../resources/img/${imgArr[index]}"/>`).insertAfter(this);
+      // $(this).before(`<img src =" ../resources/img/${imgArr[index]}"/>`);
+      $(`<img src =" ../resources/img/${imgArr[index]}"/>`).insertBefore(this);
     });
   </script>
 </html>

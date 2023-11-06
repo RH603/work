@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .wrapper * {
+      display: block;
+      border: 2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+    }
+    .wrapper {
+      width: 500px;
+    }
+    .big {
+      font-size: 200%;
+      color: blue;
+      font-weight: bold;
+    }
+    .back {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <ul>
+        ul
+        <li class="start">li class="start"</li>
+        <li class="my">li class="my"</li>
+        <li class="no">li</li>
+        <li class="my">li class="my"</li>
+        <li class="stop">li class="stop"</li>
+        <li>li</li>
+        <li>li</li>
+        <li>li</li>
+      </ul>
+    </div>
+    <button id="addClassBtn">클래스 추가 버튼</button>
+    <button id="hasClassBtn">클래스 확인 버튼</button>
+    <button id="removeClassBtn">클래스 삭제 버튼</button>
+    <button id="toggleClassBtn">클래스 토글 버튼</button>
+  </body>
+  <script>
+    $("button").on("click", function () {
+      const btnId = $(this).prop("id");
+      if (btnId.search("add") == 0) {
+        $("li:last").addClass("big back");
+      } else if (btnId.search("has") == 0) {
+      } else if (btnId.search("remove") == 0) {
+      } else {
+      }
+    });
+  </script>
+</html>
