@@ -55,8 +55,11 @@
       if (btnId.search("add") == 0) {
         $("li:last").addClass("big back");
       } else if (btnId.search("has") == 0) {
+        alert($("li:last").hasClass("big back"));
       } else if (btnId.search("remove") == 0) {
+        $("li:last").removeClass("big back");
       } else {
+        $("li:last").toggleClass("big back");
       }
     });
   </script>
