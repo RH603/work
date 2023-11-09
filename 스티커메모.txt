@@ -22,3 +22,8 @@ JQuery CDN 3.6.4 ver
   crossorigin="anonymous"></script>
 
 adobe color
+
+
+피그마 플러그인 
+unsplash
+material symbols
