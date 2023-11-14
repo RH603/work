@@ -17,6 +17,7 @@
   font-weight: 400;
   font-size: 40px;
   margin-top: 0;
+  margin-bottom: 32px;
 }
 .header-container {
   /* position: fixed;
@@ -42,6 +43,7 @@
   background-color: #fff;
   cursor: pointer;
   display: inline-flex;
+  align-items: center;
   padding: 8px 24px;
   gap: 24px;
   border-radius: 8px;
@@ -114,9 +116,22 @@
   flex-shrink: 0;
   width: 105px;
 }
+.remove-icon {
+  width: 12px;
+  height: 12px;
+}
 @media screen and (max-width: 944px) {
   .container {
     flex-direction: column;
+    margin: 0px;
+    padding: 24px 16px;
+    gap: 24px;
+    width: 100%;
+  }
+  .header-container {
+    position: sticky;
+    top: 24px;
+    z-index: 1;
   }
   .header {
     padding: 32px;
@@ -125,6 +140,28 @@
   }
   .header > h1 {
     font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .add-item {
+    padding: 20px 24px;
+  }
+  .item {
+    padding: 18px 16px;
+  }
+  .item-id {
+    margin-right: 16px;
+    width: 37px;
+  }
+  .item-mbti {
+    margin-right: 16px;
+    width: 54px;
+  }
+  .item-color-code {
+    width: 72px;
+  }
+  .item-color-chip {
+    margin-left: 16px;
+    margin-right: 8px;
   }
   .filter {
     padding: 4px 8px;
