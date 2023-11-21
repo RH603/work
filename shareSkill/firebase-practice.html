@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div{
+    box-shadow: 0,4px,4px, rgba(0,0,0,0.5);
+  }
+  p{
+    display: flex;
+    gap : 10px
+  }
+  p label{
+    display: flex;
+    justify-content: space-between;
+    width:80px;
+  }
+  .selected{
+    background-color: yellow;
+  }
+</style>
+<body>
+  <div>
+    <p>
+      <label for="name"><span>이름</span> <span>:</span> </label>
+      <input type="text"  name="name">
+    </p>
+    <p>
+      <label for="age"><span>나이</span> <span>:</span> </label>
+      <input type="text"  name="age">
+    </p>
+    <p>
+      <label for=""><span>아이디</span> <span>:</span> </label>
+      <input type="text"  name="id">
+    </p>
+    <p>
+      <label for=""><span>성별</span> <span>:</span> </label>
+      <input type="text"  name="gender">
+    </p>
+    <p>
+      <label for=""><span>전화번호</span> <span>:</span> </label>
+      <input type="text"  name="tel">
+    </p>
+    <p>
+      <button id="saveBtn">데이터 저장</button>
+    </p>
+  </div>
+  <table border="1">
+    <tr>
+       <th>이름</th>
+       <th>나이</th>
+       <th>성별</th>
+       <th>아이디</th>
+       <th>전화번호</th>
+    </tr>
+  </table>
+  <br>
+  <p>
+    <button id="deletBtn">데이터 삭제</button>
+  </p>
+</body>
+<script type="module">
+  import * as firebase from "../resources/js/fireBase.js"
+  const  {db, getDocs, collection, getDatas, setDoc, addDoc,doc,addDatas,app} = firebase;
+  // 문서 아이디 부여
+  // async function addMember(dataObj){
+  //   await setDoc(doc(db,"member","member1"),dataObj);
+  // }
+  // 문서 아이디 자동
+  // async function addMember(dataObj){
+  //   await addDoc(collection(db,"member"),dataObj)
+  // }
+  
+  const memberTable = document.querySelector("table")
+  async function getmembers(){
+    const snapshot = await getDatas("member")
+    snapshot.forEach(doc =>{
+      const  {memberName,memberAge,memberGender,memberTel,memberId} = doc.data();
+      memberTable.insertAdjacentHTML("beforeend",
+      `
+      <tr>
+        <td>${memberName}</td>
+        <td>${memberAge}</td>
+        <td>${memberGender}</td>
+        <td>${memberId}</td>
+        <td>${memberTel}</td>
+        <input type="hidden" value="${doc.id}">
+      </tr>
+      `
+        );
+    })
+  }
+  getmembers().then(function (){
+    const trs = document.querySelectorAll("tr");
+      trs.forEach((el) => {
+        console.log(el);
+        el.addEventListener("click", function () {
+          el.classList.toggle("selected");
+        });
+      });
+    })
+
+  const btn = document.querySelector("#saveBtn")
+  const deletBtn = document.querySelector("#deletBtn")
+  btn.addEventListener("click", function(){
+    const memberInfo = {
+      memberAge: document.querySelector("input[name=age]").value, 
+      memberGender: document.querySelector("input[name=gender]").value, 
+      memberId: document.querySelector("input[name=id]").value,
+      memberName: document.querySelector("input[name=name]").value, 
+      memberTel: document.querySelector("input[name=tel]").value,
+    };
+    addDatas("member",memberInfo);
+  })
+</script>
+<script>
+
+</script>
+</html>
