@@ -23,6 +23,8 @@ JQuery CDN 3.6.4 ver
 
 adobe color
 
+색상 그라데이션
+https://coolors.co/
 
 피그마 플러그인 
 unsplash
