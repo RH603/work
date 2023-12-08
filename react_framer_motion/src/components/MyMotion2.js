@@ -3,11 +3,11 @@ import "./MyMotion1.css";
 
 const boxVariants = {
   start: { opacity: 0, scale: 0 },
-  end: { opacity: 1, scale: 1, transition: { type: "spring", delay: 1 } },
+  end: { opacity: 1, scale: 1, transition: { type: "spring", delayChildren:0.3, staggerChildren:0.2 } },
 };
 const circleVariants = {
   start: { y: "50px", opacity: 0 },
-  end: { y: 0, opacity: 1, transition: { type: "spring", delay: 5, duration:1 } },
+  end: { y: 0, opacity: 1, transition: { type: "spring"} },
 };
 
 export function MyMotion2() {
@@ -22,9 +22,7 @@ export function MyMotion2() {
         >
           <motion.div
             className="circle"
-            initial={{ y: "50px", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", delay: 5, duration:1 }}
+            variants={circleVariants}
 
           ></motion.div>
           <motion.div

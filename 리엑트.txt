@@ -1,0 +1,18 @@
+리엑트 설치
+
+1. 인터넷 창에서 node.js 설치 LTS 버전
+
+2. 터미널에서 node -v 로 버전 확인
+
+3. npm -v 버전 확인 
+
+4. npx -v 
+
+5. npx create-react-app 프로젝트 이름
+
+6. npm rm -g create-react-app 지우는 명령어
+   npm install create-react-app 설치 	
+
+7. npm run start
+
+8. 컨트롤 C 누르면 프로젝트 종료
