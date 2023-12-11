@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let z = 2;
+    function A(a, b) {
+      //   console.log(a + b + B(1, 2));
+      return a - b;
+    }
+
+    function B(a, b) {
+      console.log(arguments);
+      return a + b;
+    }
+    A(2, 5);
+
+    function sumArr(arr) {
+      arr.forEach((v) => {
+        return (z += v);
+      });
+    }
+
+    const arr = [1, 2, 3, 4, 5];
+    sumArr(arr);
+    console.log(z);
+    B(1, 2, 3, 4);
+
+    const B = (a, b) => {
+      return a + b;
+    };
+  </script>
+</html>
