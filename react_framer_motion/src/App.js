@@ -6,11 +6,14 @@
 // import { Gesture } from "./components/Gesture";
 // import { Scroll } from "./components/Scroll";
 // import{Event} from "./components/Event"
-// import { MyAnimatePresence } from "./components/AnimatePresence";
-import{ MotionValue} from "./components/MotionValue"
+import { MyAnimatePresence } from "./components/AnimatePresence";
+// import{ MotionValue} from "./components/MotionValue"
+// import {MotionValue2} from "./components/MotionValue2"
+// import {MotionValue3} from "./components/MotionValue3"
+// import {AnimationControl} from "./components/AnimationControl"
 
 function App() {
-  return <MotionValue />;
+  return <MyAnimatePresence  />;
 }
 
 export default App;
