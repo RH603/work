@@ -1,5 +1,5 @@
 import HandIcon from "./Handleicon"
-
+import "./HandButton.css"
 
 
 function HandButton({value,onClick}){
@@ -19,8 +19,8 @@ function HandButton({value,onClick}){
       }
     return(
 
-        <button onClick={handleClick}>
-            <HandIcon value={value}/>
+        <button className="HandButton" onClick={handleClick}>
+            <HandIcon className="HandButton-icon" value={value}/>
         </button>
     )
 }
