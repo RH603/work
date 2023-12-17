@@ -67,4 +67,3 @@ button.addEventListener('click', () => {
 // console.log(lottoNumber)
 // 배열중에 '어떤값'이 존재 하는지 유뮤에 따라 true, false
 // console.log(lottoNumber.includes('8'))
-
