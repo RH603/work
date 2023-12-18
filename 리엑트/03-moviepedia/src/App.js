@@ -1,14 +1,19 @@
 import "./App.css";
 import ReviewList from "./components/ReviewList";
+import ReviewForm from "./components/ReviewForm";
 import { useEffect, useState } from "react";
 import { getDatas, reviews } from "./fireBase";
+import "./components/ReviewForm.css"
 
 const LIMIT = 5;
 
 function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
-  const [lq, setLq] = useState({})
+  const [lq, setLq] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(null);
+  const [hasNext, setHasNext] = useState(false);
 
   // sort 함수에 아무런 아규먼트(arguments)도 전달하지 않을 때는 기본적으로 유니코드에 정의된 문자열 순서에 따라 정렬 된다.
   // ==> compareFunction가 생략될 경우, 배열의 모든 요소들은 문자열 취급되며, 유니코드값 순서대로 정렬된다는 의미이다.
@@ -33,19 +38,33 @@ function App() {
     setItems(nextItems);
   };
 
-  const handleLoad = async (lq) => {
-    const { reviews, lastQuery } = await getDatas("movie", order, LIMIT,lq);
-    setLq(lastQuery)
-    // console.log(reviews);
-    if( lq !== undefined){
-      setItems((prevItems) => [...prevItems, ...reviews]);
-    }else{
-      setItems(reviews)
+  const handleLoad = async (options) => {
+    let result;
+    try {
+      setIsLoading(true);
+      setLoadingError(null);
+      result = await getDatas("movie", options);
+    } catch (error) {
+      console.error(error);
+      setLoadingError(error);
+      return;
+    } finally {
+      // finally = 생략 가능, try에 오류가 있거나 없거나 무조건 실행 됨
+      setIsLoading(false);
     }
+    const { reviews, lastQuery } = result;
+
+    if (options.lq === undefined) {
+      setItems(reviews);
+    } else {
+      setItems((prevItems) => [...prevItems, ...reviews]);
+    }
+    setLq(lastQuery);
+    setHasNext(lastQuery);
   };
 
   const handleLoadMore = () => {
-    handleLoad(lq);
+    handleLoad({lq, order, limit:LIMIT});
   };
 
   useEffect(() => {
@@ -53,7 +72,8 @@ function App() {
     // [] 은 dependency list 라고 하는데 위에서 handelLoad 함수가 무한루프 작동을 하기 때문에 처리를 해줘야 하는데
     // 리엑트 [] 안에 있는 값들을 앞에서 기억한 값이랑 비교한다.
     // 비교 해서 다른경우에만 콜백함수를 실행한다. (그 전에는 콜백함수를 등록만 해놓음)
-    handleLoad();
+    handleLoad({ order, lq: undefined, limit: LIMIT });
+    // options 의 시작
   }, [order]);
 
   return (
@@ -62,8 +82,31 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
+      <ReviewForm />
       <ReviewList items={items} onDelete={handleDeleate} />
-      <button onClick={handleLoadMore}>더보기</button>
+      {
+        // {}안에는 표현식만 올수있다.
+        // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
+        // loadingError !== null ? <span>{loadingError.message}</span> : "";
+
+        // 에러가 있을 시 나타낼 요소, 텍스트를 출력
+
+        loadingError?.message && <span>{loadingError.message}</span>
+        // ?. = optinal 체이닝 ?.에는 null 혹은 Error 객채가 담김
+        // loadingError가 존재 할때만 ?.message를 참조한다( 프로퍼티를 꺼낸다)
+
+        // 조건부 연산자
+        // AND : 앞에 나오는 값이 true 이면 뒤쪽 랜더링 = &&
+        // OR : 앞에 나오는 값이 false 이면 뒤쪽 랜더링 = ||
+
+        // true = truthy  false = falsy
+        // falsy = null, NaN, 0, 빈 문자열 , undefinded 이외는 다 = truthy
+      }
+      {hasNext && (
+        <button disabled={isLoading} onClick={handleLoadMore}>
+          더보기
+        </button>
+      )}
     </div>
   );
 }

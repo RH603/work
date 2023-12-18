@@ -13,7 +13,7 @@ import {
   query,
   orderBy,
   limit,
-  startAfter, 
+  startAfter,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
 const firebaseConfig = {
@@ -28,32 +28,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getDatas(collectionName,order, limitNum, lq) {
+async function getDatas(collectionName, options) {
+  // throw new Error("에러가 아니고 기능입니다.")
   // const querySnapahot = await getDocs(collection(db, collectionName));
   let docQuery;
-  if(lq === undefined){
-     docQuery = query(
+  if (options.lq === undefined) {
+    docQuery = query(
       // asc 오름차순(생략가능) desc 내림차순
       collection(db, collectionName),
-      orderBy(order, "desc"),
-      limit(limitNum)
-      );
-  }else{
-     docQuery = query(
+      orderBy(options.order, "desc"),
+      limit(options.limit)
+    );
+  } else {
+    docQuery = query(
       // asc 오름차순(생략가능) desc 내림차순
       collection(db, collectionName),
-      orderBy(order, "desc"),
-      startAfter(lq),
-      limit(limitNum)
-      );
+      orderBy(options.order, "desc"),
+      startAfter(options.lq),
+      limit(options.limit)
+    );
   }
-    const querySnapahot = await getDocs(docQuery);
-    
+  const querySnapahot = await getDocs(docQuery);
+
   // 쿼리 query
   // orderBy, limit, startAfter
   const result = querySnapahot.docs;
   // console.log(result)
-  const lastQuery = result[result.length -1]
+  const lastQuery = result[result.length - 1];
   // console.log(lastQuery)
   const reviews = result.map((doc) => doc.data());
   return { reviews, lastQuery };
