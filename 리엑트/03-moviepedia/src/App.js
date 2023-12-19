@@ -4,7 +4,7 @@ import ReviewForm from "./components/ReviewForm";
 import { useEffect, useState } from "react";
 import { getDatas, reviews } from "./fireBase";
 import "./components/ReviewForm.css"
-
+// blob = 데이터 값이 큰 것을 담을수 있다
 const LIMIT = 5;
 
 function App() {
