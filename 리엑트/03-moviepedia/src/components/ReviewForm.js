@@ -2,18 +2,19 @@ import { useState } from "react";
 import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
 
-function ReviewForm() {
+function ReviewForm({ onSubmit, onSubmitSuccess }) {
   // const[title, setTitle] = useState("");
   // const[rating, setRating] = useState(0);
   // const[content, setContent] = useState("");
-
-  const [values, setValues] = useState({
+  const INITIAL_VALUES = {
     // 위에 선언된 useState를 한번에 선언하는 방법
     title: "",
     rating: 0,
     content: "",
     imgUrl: null,
-  });
+  }
+  
+  const [values, setValues] = useState({ INITIAL_VALUES  });
 
   //   const handeleTitleChange = (e) => {
   //     setTitle(e.target.value);
@@ -52,9 +53,22 @@ function ReviewForm() {
   //   setValues((prevValues) => ({ ...prevValues, [name]: value }));
   // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     //   preventDefault는 이벤트 막는 함수
+    e.preventDefault();
+
+    // 새로 만들어서 넣어도 된다
+    // const formData = {}
+
+    // 오류를 잡을때 사용하는 try{}catch{}
+    try {
+      const { review } = await onSubmit("movie", values);
+      onSubmitSuccess(review)
+    } catch (error) {
+      return;
+    } finally {
+    }
+    setValues(INITIAL_VALUES)
   };
 
   return (
