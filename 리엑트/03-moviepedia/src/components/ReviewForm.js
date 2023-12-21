@@ -67,7 +67,6 @@ function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES,
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
-      const { review } = await onSubmit("movie", values);
       onSubmitSuccess(review)
     } catch (error) {
       setSubmittingError(error);
