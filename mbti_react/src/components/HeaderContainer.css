@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    position: sticky;
+    top: 80px;
+    padding: 80px 40px;
+    background-color: #f5f7fb;
+    color: #464e5e;
+    text-align: right;
+    border-radius: 80px;
+}
+
+.header>h1 {
+    font-weight: 400;
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.header>h1>.accent {
+    font-weight: 800;
+}
+
+.filter {
+    background-color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}

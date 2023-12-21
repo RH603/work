@@ -2,9 +2,9 @@ import "./App.css";
 import ReviewList from "./components/ReviewList";
 import ReviewForm from "./components/ReviewForm";
 import { useEffect, useState } from "react";
-import { getDatas, reviews } from "./fireBase";
-import "./components/ReviewForm.css"
-
+import { getDatas, reviews, addDatas, deleteDatas,updateDatas } from "./fireBase";
+import "./components/ReviewForm.css";
+// blob = 데이터 값이 큰 것을 담을수 있다
 const LIMIT = 5;
 
 function App() {
@@ -29,13 +29,20 @@ function App() {
   const handleNewestClick = () => setOrder("createdAt");
   const handleBestClick = () => setOrder("rating");
   // console.log(items);
-  const handleDeleate = (id) => {
-    alert(id);
+  const handleDeleate = async (docId,imgUrl) => {
+    // alert(id);
     // items 에서 id 파라미터와 같은 id를 가지는 요소(객체)를 제거
-    const nextItems = items.filter((item) => {
-      return item.id !== id;
-    });
-    setItems(nextItems);
+    // const nextItems = items.filter((item) => {
+    //   return item.id !== id;
+    // });
+    // setItems(nextItems);
+
+    // db에서 데이터 삭제
+    const result = await deleteDatas("movie", docId, imgUrl)
+    if(!result) return //db 에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다.  
+
+    // items 셋팅
+    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
 
   const handleLoad = async (options) => {
@@ -64,7 +71,11 @@ function App() {
   };
 
   const handleLoadMore = () => {
-    handleLoad({lq, order, limit:LIMIT});
+    handleLoad({ lq, order, limit: LIMIT });
+  };
+
+  const handleAddSuccess = (review) => {
+    setItems((prevItems) => [review, ...prevItems]);
   };
 
   useEffect(() => {
@@ -82,8 +93,8 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewForm />
-      <ReviewList items={items} onDelete={handleDeleate} />
+      <ReviewForm onSubmitSuccess={handleAddSuccess} onSubmit={addDatas} />
+      <ReviewList items={items} onDelete={handleDeleate} onUpdate={updateDatas} />
       {
         // {}안에는 표현식만 올수있다.
         // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
