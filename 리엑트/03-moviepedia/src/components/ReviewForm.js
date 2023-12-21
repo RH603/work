@@ -2,19 +2,22 @@ import { useState } from "react";
 import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
 
-function ReviewForm({ onSubmit, onSubmitSuccess }) {
+const INITIAL_VALUES = {
+  // 위에 선언된 useState를 한번에 선언하는 방법
+  title: "",
+  rating: 0,
+  content: "",
+  imgUrl: null,
+}
+function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES, initialPreview, onCancel }) {
   // const[title, setTitle] = useState("");
   // const[rating, setRating] = useState(0);
   // const[content, setContent] = useState("");
-  const INITIAL_VALUES = {
-    // 위에 선언된 useState를 한번에 선언하는 방법
-    title: "",
-    rating: 0,
-    content: "",
-    imgUrl: null,
-  }
+
   
-  const [values, setValues] = useState({ INITIAL_VALUES  });
+  const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
 
   //   const handeleTitleChange = (e) => {
   //     setTitle(e.target.value);
@@ -25,16 +28,16 @@ function ReviewForm({ onSubmit, onSubmitSuccess }) {
   //   const handleContentChange = (e) => {
   //     setContent(e.target.value);
   //   };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
 
   const handleChange = (name, value) => {
     // 위에 선언된 함수를 한번에 선언 하는 방법
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    handleChange(name, value);
-  };
 
   // 위에 있는 함수
   // setValues((prevValues) => {
@@ -62,18 +65,22 @@ function ReviewForm({ onSubmit, onSubmitSuccess }) {
 
     // 오류를 잡을때 사용하는 try{}catch{}
     try {
+      setSubmittingError(null);
+      setIsSubmitting(true);
       const { review } = await onSubmit("movie", values);
       onSubmitSuccess(review)
     } catch (error) {
+      setSubmittingError(error);
       return;
     } finally {
+      setIsSubmitting(false);
     }
     setValues(INITIAL_VALUES)
   };
 
   return (
     <form className="ReviewForm" onSubmit={handleSubmit}>
-      <FileInput name="imgUrl" onChange={handleChange} value={values.imgUrl} />
+      <FileInput name="imgUrl" onChange={handleChange} value={values.imgUrl} initialPreview={initialPreview} />
       {/* 제목 */}
       <input
         type="text"
@@ -95,7 +102,9 @@ function ReviewForm({ onSubmit, onSubmitSuccess }) {
         value={values.content}
         onChange={handleInputChange}
       />
-      <button type="submit">확인</button>
+      {onCancel && <button onClick={onCancel}>취소</button>}
+      <button type="submit" disabled={isSubmitting}>확인</button>
+      {submittingError?.message && <div>{submittingError.messagec}</div>}
     </form>
   );
 }

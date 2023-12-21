@@ -21,6 +21,7 @@ import {
   ref,
   uploadBytes,
   getDownloadURL,
+  deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
 const firebaseConfig = {
@@ -109,8 +110,46 @@ async function addDatas(collectionName, formData) {
   }
 }
 
-async function deleteDatas(collectionName, docID) {
-  await deleteDoc(doc(db, collectionName, docID));
+async function updateDatas(collectionName, formData, docId, imgUrl) {
+  const docRef = await doc(db, collectionName, docId);
+  const time = new Date().getTime();
+
+  formData.imgUrl = imgUrl;
+  formData.updatedAt = time
+
+  // 사진 파일을 바꾸었을때
+  if (formData.imgUrl !== null) {
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, formData.imgUrl);
+
+    // 기존 사진 삭제하기
+    const storage = getStorage();
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    // 가져온 사진 경로  updateInfoObj의 imgUrl 에 셋팅하기
+    formData.imgUrl = url
+  }
+  await updateDoc(docRef, formData);
+  const docData = await getDoc(docRef);
+  console.log("수정성공!")
+
+}
+
+async function deleteDatas(collectionName, docID, imgUrl) {
+  // firebase에 있는 스토리지 삭제 하는 방법
+  const storage = getStorage();
+  const deleteRef = ref(storage, imgUrl);
+
+  // deleteObject  스토리지 내장함수
+  try {
+    await deleteObject(deleteRef);
+    await deleteDoc(doc(db, collectionName, docID));
+  } catch (error) {
+    return false;
+  }
+  return true;
 }
 
 async function uploadImage(path, imgFile) {
@@ -155,4 +194,5 @@ export {
   updateDoc,
   addDatas,
   deleteDatas,
+  updateDatas,
 };
