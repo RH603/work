@@ -9,7 +9,7 @@ function ReviewForm() {
     // 위에 선언된 useState를 한번에 선언하는 방법
     title: "",
     rating: 0,
-    content: ",",
+    content: "",
   });
 
   //   const handeleTitleChange = (e) => {
