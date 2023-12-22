@@ -114,8 +114,12 @@ async function updateDatas(collectionName, formData, docId, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
   const time = new Date().getTime();
 
-  formData.imgUrl = imgUrl;
-  formData.updatedAt = time
+  const updateFormData = {
+    title: formData.title,
+    content: formData.content,
+    rating: formData.rating,
+    updatedAt: time,
+  };
 
   // 사진 파일을 바꾸었을때
   if (formData.imgUrl !== null) {
@@ -125,25 +129,30 @@ async function updateDatas(collectionName, formData, docId, imgUrl) {
 
     // 기존 사진 삭제하기
     const storage = getStorage();
-    const deleteRef = ref(storage, imgUrl);
-    await deleteObject(deleteRef);
+    try {
+      const deleteRef = ref(storage, imgUrl);
+      await deleteObject(deleteRef);
+    } catch {
+      return null;
+    }
 
     // 가져온 사진 경로  updateInfoObj의 imgUrl 에 셋팅하기
-    formData.imgUrl = url
+    updateFormData.imgUrl = url;
   }
-  await updateDoc(docRef, formData);
+  // 문서 필드 수정
+  await updateDoc(docRef, updateFormData);
   const docData = await getDoc(docRef);
-  console.log("수정성공!")
-
+  const review = { docId: docData.id, ...docData.data() };
+  return { review };
 }
 
 async function deleteDatas(collectionName, docID, imgUrl) {
   // firebase에 있는 스토리지 삭제 하는 방법
   const storage = getStorage();
-  const deleteRef = ref(storage, imgUrl);
 
   // deleteObject  스토리지 내장함수
   try {
+    const deleteRef = ref(storage, imgUrl);
     await deleteObject(deleteRef);
     await deleteDoc(doc(db, collectionName, docID));
   } catch (error) {

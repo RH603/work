@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import resetImg from "../assets/ic-reset.png";
 
 function FileInput({ onChange, name, value, initialPreview }) {
-  console.log(initialPreview);
+  // console.log(initialPreview);
   // 리엑트 에서는 document.querySelector 대신 useRef 를 사용한다
   const inputRef = useRef();
   const [preview, setPreview] = useState(initialPreview);

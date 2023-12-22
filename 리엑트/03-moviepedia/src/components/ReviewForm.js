@@ -8,13 +8,18 @@ const INITIAL_VALUES = {
   rating: 0,
   content: "",
   imgUrl: null,
-}
-function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES, initialPreview, onCancel }) {
+};
+function ReviewForm({
+  onSubmit,
+  onSubmitSuccess,
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+  onCancel,
+}) {
   // const[title, setTitle] = useState("");
   // const[rating, setRating] = useState(0);
   // const[content, setContent] = useState("");
 
-  
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
@@ -37,7 +42,6 @@ function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES,
     // 위에 선언된 함수를 한번에 선언 하는 방법
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
-
 
   // 위에 있는 함수
   // setValues((prevValues) => {
@@ -64,22 +68,35 @@ function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES,
     // const formData = {}
 
     // 오류를 잡을때 사용하는 try{}catch{}
+    const formData = {
+      title : values.title,
+      content : values.content,
+      imgUrl : values.imgUrl,
+      rating : values.rating,
+    }
+
     try {
       setSubmittingError(null);
       setIsSubmitting(true);
-      onSubmitSuccess(review)
+      const { review } = await onSubmit("movie", formData);
+      onSubmitSuccess(review);
     } catch (error) {
       setSubmittingError(error);
       return;
     } finally {
       setIsSubmitting(false);
     }
-    setValues(INITIAL_VALUES)
+    setValues(INITIAL_VALUES);
   };
 
   return (
     <form className="ReviewForm" onSubmit={handleSubmit}>
-      <FileInput name="imgUrl" onChange={handleChange} value={values.imgUrl} initialPreview={initialPreview} />
+      <FileInput
+        name="imgUrl"
+        onChange={handleChange}
+        value={values.imgUrl}
+        initialPreview={initialPreview}
+      />
       {/* 제목 */}
       <input
         type="text"
@@ -102,7 +119,9 @@ function ReviewForm({ onSubmit, onSubmitSuccess, initialValues = INITIAL_VALUES,
         onChange={handleInputChange}
       />
       {onCancel && <button onClick={onCancel}>취소</button>}
-      <button type="submit" disabled={isSubmitting}>확인</button>
+      <button type="submit" disabled={isSubmitting}>
+        확인
+      </button>
       {submittingError?.message && <div>{submittingError.messagec}</div>}
     </form>
   );

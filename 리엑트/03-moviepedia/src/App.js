@@ -2,8 +2,17 @@ import "./App.css";
 import ReviewList from "./components/ReviewList";
 import ReviewForm from "./components/ReviewForm";
 import { useEffect, useState } from "react";
-import { getDatas, reviews, addDatas, deleteDatas,updateDatas } from "./fireBase";
+import {
+  getDatas,
+  reviews,
+  addDatas,
+  deleteDatas,
+  updateDatas,
+} from "./fireBase";
 import "./components/ReviewForm.css";
+import LocaleSelect from "./components/LocaleSelect";
+import LocaleProvider from "./contexts/LocaleContext";
+import LocaleContext from "./contexts/LocaleContext";
 // blob = 데이터 값이 큰 것을 담을수 있다
 const LIMIT = 5;
 
@@ -14,6 +23,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
   const [hasNext, setHasNext] = useState(false);
+  // const [locale, setLocale] = useState("ko");
 
   // sort 함수에 아무런 아규먼트(arguments)도 전달하지 않을 때는 기본적으로 유니코드에 정의된 문자열 순서에 따라 정렬 된다.
   // ==> compareFunction가 생략될 경우, 배열의 모든 요소들은 문자열 취급되며, 유니코드값 순서대로 정렬된다는 의미이다.
@@ -29,7 +39,7 @@ function App() {
   const handleNewestClick = () => setOrder("createdAt");
   const handleBestClick = () => setOrder("rating");
   // console.log(items);
-  const handleDeleate = async (docId,imgUrl) => {
+  const handleDeleate = async (docId, imgUrl) => {
     // alert(id);
     // items 에서 id 파라미터와 같은 id를 가지는 요소(객체)를 제거
     // const nextItems = items.filter((item) => {
@@ -38,8 +48,11 @@ function App() {
     // setItems(nextItems);
 
     // db에서 데이터 삭제
-    const result = await deleteDatas("movie", docId, imgUrl)
-    if(!result) return //db 에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다.  
+    const result = await deleteDatas("movie", docId, imgUrl);
+    if (!result) {
+      alert("저장된 이미지 파일이 없습니다. \n경로를 확인해주세요");
+      return; //db 에서 삭제가 성공했을 때만 그 결과를 화면에 반영한다.
+    }
 
     // items 셋팅
     setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
@@ -78,6 +91,25 @@ function App() {
     setItems((prevItems) => [review, ...prevItems]);
   };
 
+  const handleUpdateSuccess = (review) => {
+    // console.log(review);
+    setItems((prevItems) => {
+      // findIndex 찾을 인덱스의 조건을 적는다. 인덱스 번호를 리턴 해준다.
+      const splitIdx = prevItems.findIndex((item) => item.id === review.id);
+
+      // const arr = [1,2,3,4,5]
+      // const sliceArr1 = arr.slice(0,2);
+      // const changeArr = [3];
+      // const sliceArr2 = arr.slice(3)
+
+      return [
+        ...prevItems.slice(0, splitIdx),
+        review,
+        ...prevItems.slice(splitIdx + 1),
+      ];
+    });
+  };
+
   useEffect(() => {
     // useEffect 는 arguments 로 콜백 함수와 배열을 넘겨준다
     // [] 은 dependency list 라고 하는데 위에서 handelLoad 함수가 무한루프 작동을 하기 때문에 처리를 해줘야 하는데
@@ -88,37 +120,45 @@ function App() {
   }, [order]);
 
   return (
-    <div>
+    <LocaleProvider defaultValue="ko">
       <div>
-        <button onClick={handleNewestClick}>최신순</button>
-        <button onClick={handleBestClick}>베스트순</button>
+        <LocaleSelect/>
+        <div>
+          <button onClick={handleNewestClick}>최신순</button>
+          <button onClick={handleBestClick}>베스트순</button>
+        </div>
+        <ReviewForm onSubmitSuccess={handleAddSuccess} onSubmit={addDatas} />
+        <ReviewList
+          items={items}
+          onDelete={handleDeleate}
+          onUpdate={updateDatas}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
+        {
+          // {}안에는 표현식만 올수있다.
+          // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
+          // loadingError !== null ? <span>{loadingError.message}</span> : "";
+
+          // 에러가 있을 시 나타낼 요소, 텍스트를 출력
+
+          loadingError?.message && <span>{loadingError.message}</span>
+          // ?. = optinal 체이닝 ?.에는 null 혹은 Error 객채가 담김
+          // loadingError가 존재 할때만 ?.message를 참조한다( 프로퍼티를 꺼낸다)
+
+          // 조건부 연산자
+          // AND : 앞에 나오는 값이 true 이면 뒤쪽 랜더링 = &&
+          // OR : 앞에 나오는 값이 false 이면 뒤쪽 랜더링 = ||
+
+          // true = truthy  false = falsy
+          // falsy = null, NaN, 0, 빈 문자열 , undefinded 이외는 다 = truthy
+        }
+        {hasNext && (
+          <button disabled={isLoading} onClick={handleLoadMore}>
+            더보기
+          </button>
+        )}
       </div>
-      <ReviewForm onSubmitSuccess={handleAddSuccess} onSubmit={addDatas} />
-      <ReviewList items={items} onDelete={handleDeleate} onUpdate={updateDatas} />
-      {
-        // {}안에는 표현식만 올수있다.
-        // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
-        // loadingError !== null ? <span>{loadingError.message}</span> : "";
-
-        // 에러가 있을 시 나타낼 요소, 텍스트를 출력
-
-        loadingError?.message && <span>{loadingError.message}</span>
-        // ?. = optinal 체이닝 ?.에는 null 혹은 Error 객채가 담김
-        // loadingError가 존재 할때만 ?.message를 참조한다( 프로퍼티를 꺼낸다)
-
-        // 조건부 연산자
-        // AND : 앞에 나오는 값이 true 이면 뒤쪽 랜더링 = &&
-        // OR : 앞에 나오는 값이 false 이면 뒤쪽 랜더링 = ||
-
-        // true = truthy  false = falsy
-        // falsy = null, NaN, 0, 빈 문자열 , undefinded 이외는 다 = truthy
-      }
-      {hasNext && (
-        <button disabled={isLoading} onClick={handleLoadMore}>
-          더보기
-        </button>
-      )}
-    </div>
+    </LocaleProvider>
   );
 }
 
