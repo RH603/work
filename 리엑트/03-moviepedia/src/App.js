@@ -1,7 +1,7 @@
 import "./App.css";
 import ReviewList from "./components/ReviewList";
 import ReviewForm from "./components/ReviewForm";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import {
   getDatas,
   reviews,
@@ -9,12 +9,26 @@ import {
   deleteDatas,
   updateDatas,
 } from "./fireBase";
-import "./components/ReviewForm.css";
+// import "./components/ReviewForm.css";
 import LocaleSelect from "./components/LocaleSelect";
-import LocaleProvider from "./contexts/LocaleContext";
-import LocaleContext from "./contexts/LocaleContext";
+import { LocaleProvider } from "./contexts/LocaleContext";
+import useTranslate from "./hooks/useTranslate";
+import logoImg from "./assets/logo.png";
+import ticketImg from "./assets/ticket.png";
 // blob = 데이터 값이 큰 것을 담을수 있다
 const LIMIT = 5;
+
+function AppSortButton({ selected, children, onClick }) {
+  return (
+    <button
+      disabled={selected}
+      className={`AppSortButton ${selected ? "selected" : ""}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
 
 function App() {
   const [items, setItems] = useState([]);
@@ -23,6 +37,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
   const [hasNext, setHasNext] = useState(false);
+  const t = useTranslate();
   // const [locale, setLocale] = useState("ko");
 
   // sort 함수에 아무런 아규먼트(arguments)도 전달하지 않을 때는 기본적으로 유니코드에 정의된 문자열 순서에 따라 정렬 된다.
@@ -120,45 +135,72 @@ function App() {
   }, [order]);
 
   return (
-    <LocaleProvider defaultValue="ko">
-      <div>
-        <LocaleSelect/>
-        <div>
-          <button onClick={handleNewestClick}>최신순</button>
-          <button onClick={handleBestClick}>베스트순</button>
+    <div className="App">
+      <nav className="App-nav">
+        <div className="App-nav-container">
+          <img className="App-logo" src={logoImg} alt="movie pedia logo" />
+          <LocaleSelect />
         </div>
-        <ReviewForm onSubmitSuccess={handleAddSuccess} onSubmit={addDatas} />
-        <ReviewList
-          items={items}
-          onDelete={handleDeleate}
-          onUpdate={updateDatas}
-          onUpdateSuccess={handleUpdateSuccess}
-        />
-        {
-          // {}안에는 표현식만 올수있다.
-          // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
-          // loadingError !== null ? <span>{loadingError.message}</span> : "";
+      </nav>
+      <div className="App-container">
+        <div
+          className="App-ReviewForm"
+          style={{ backgroundImg: `url(${ticketImg})` }}
+        >
+          <ReviewForm onSubmitSuccess={handleAddSuccess} onSubmit={addDatas} />
+        </div>
+        <div className="App-sorts">
+          <AppSortButton
+            onClick={handleNewestClick}
+            selected={order === "createdAt"}
+          >
+            {t("newest")}
+          </AppSortButton>
+          <AppSortButton
+            onClick={handleBestClick}
+            selected={order === "rating"}
+          >
+            {t("best")}
+          </AppSortButton>
+        </div>
+        <div App-ReviewList>
+          <ReviewList
+            items={items}
+            onDelete={handleDeleate}
+            onUpdate={updateDatas}
+            onUpdateSuccess={handleUpdateSuccess}
+          />
+          {
+            // {}안에는 표현식만 올수있다.
+            // if문은 올 수 없다 하지만 삼항 연산자는 올 수 있다
+            // loadingError !== null ? <span>{loadingError.message}</span> : "";
 
-          // 에러가 있을 시 나타낼 요소, 텍스트를 출력
+            // 에러가 있을 시 나타낼 요소, 텍스트를 출력
 
-          loadingError?.message && <span>{loadingError.message}</span>
-          // ?. = optinal 체이닝 ?.에는 null 혹은 Error 객채가 담김
-          // loadingError가 존재 할때만 ?.message를 참조한다( 프로퍼티를 꺼낸다)
+            loadingError?.message && <span>{loadingError.message}</span>
+            // ?. = optinal 체이닝 ?.에는 null 혹은 Error 객채가 담김
+            // loadingError가 존재 할때만 ?.message를 참조한다( 프로퍼티를 꺼낸다)
 
-          // 조건부 연산자
-          // AND : 앞에 나오는 값이 true 이면 뒤쪽 랜더링 = &&
-          // OR : 앞에 나오는 값이 false 이면 뒤쪽 랜더링 = ||
+            // 조건부 연산자
+            // AND : 앞에 나오는 값이 true 이면 뒤쪽 랜더링 = &&
+            // OR : 앞에 나오는 값이 false 이면 뒤쪽 랜더링 = ||
 
-          // true = truthy  false = falsy
-          // falsy = null, NaN, 0, 빈 문자열 , undefinded 이외는 다 = truthy
-        }
-        {hasNext && (
-          <button disabled={isLoading} onClick={handleLoadMore}>
-            더보기
-          </button>
-        )}
+            // true = truthy  false = falsy
+            // falsy = null, NaN, 0, 빈 문자열 , undefinded 이외는 다 = truthy
+          }
+          {hasNext && (
+            <button className="App-load-more-button" disabled={isLoading} onClick={handleLoadMore}>
+              {t("load more")}
+            </button>
+          )}
+        </div>
       </div>
-    </LocaleProvider>
+      <footer className="App-footer">
+        <div className="App-footer-container">
+          {t("terms of service")} | {t("privacy policy")}
+        </div>
+      </footer>
+    </div>
   );
 }
 

@@ -14,6 +14,7 @@ https://www.gdweb.co.kr/main/
 
 6. npm rm -g create-react-app 지우는 명령어
    npm install create-react-app 설치 	
+   npm install classnames
 
 7. npm run start
 

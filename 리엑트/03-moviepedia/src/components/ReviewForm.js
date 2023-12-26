@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
+import useTranslate from "../hooks/useTranslate.js";
 
 const INITIAL_VALUES = {
   // 위에 선언된 useState를 한번에 선언하는 방법
@@ -23,6 +24,7 @@ function ReviewForm({
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(null);
+  const t = useTranslate()
 
   //   const handeleTitleChange = (e) => {
   //     setTitle(e.target.value);
@@ -103,6 +105,7 @@ function ReviewForm({
         name="title"
         value={values.title}
         onChange={handleInputChange}
+        placeholder={t("title placeholder")}
       />
       {/* oninput = 입력할때마다 input 태그 에서만 가능 */}
       {/* onchange = 입력이 끝나고 엔터 했을때 */}
@@ -117,10 +120,11 @@ function ReviewForm({
         name="content"
         value={values.content}
         onChange={handleInputChange}
+        placeholder={t("content placeholder")}
       />
-      {onCancel && <button onClick={onCancel}>취소</button>}
+      {onCancel && <button onClick={onCancel}>{t("cancel button")}</button>}
       <button type="submit" disabled={isSubmitting}>
-        확인
+        {t("confirm button")}
       </button>
       {submittingError?.message && <div>{submittingError.messagec}</div>}
     </form>
