@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import resetImg from "../assets/ic-reset.png";
-
+import "./FileInput.css"
+import placeholderImg from "../assets/preview-placeholder.png"
 function FileInput({ onChange, name, value, initialPreview }) {
   // console.log(initialPreview);
   // 리엑트 에서는 document.querySelector 대신 useRef 를 사용한다
@@ -42,19 +43,20 @@ function FileInput({ onChange, name, value, initialPreview }) {
   }, [value, initialPreview]);
 
   return (
-    <div>
+    <div className="FileInput">
       {/* img태그를 사용할때 div태그 안에 넣어야 한다.  */}
-      <img src={preview} alt="이미지 미리보기" />
+      <img className={`FileInput-preview ${preview ? "selected" : ""}`} src={preview} alt="이미지 미리보기" />
       {/* accept 파일 제한 하는 속성 */}
       <input
+        className="FileInput-hidden-overlay"
         type="file"
         accept="image/png, image/jpeg"
         onChange={handleChange}
         ref={inputRef}
       />
       {value && (
-        <button onClick={handleClearClick}>
-          <img src={resetImg} alt="선택해제" />
+        <button className="FileInput-clear-button" onClick={handleClearClick}>
+          <img src={resetImg || placeholderImg} alt="선택해제" />
         </button>
       )}
     </div>

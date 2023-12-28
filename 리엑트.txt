@@ -14,7 +14,9 @@ https://www.gdweb.co.kr/main/
 
 6. npm rm -g create-react-app 지우는 명령어
    npm install create-react-app 설치 	
-   npm install classnames
+   npm install classnames  
+   npm install react-router-dom@+버전 숫자  라우터 준비
+  npm install styled-components 스타일 모듈
 
 7. npm run start
 
