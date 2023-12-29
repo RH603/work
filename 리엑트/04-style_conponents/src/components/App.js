@@ -32,6 +32,9 @@ function App() {
         <Link to="09">
           <li>9. 연습4</li>
         </Link>
+        <Link to="10">
+          <li>10. 로그인 화면 구현</li>
+        </Link>
       </ul>
       <Outlet />
     </>
