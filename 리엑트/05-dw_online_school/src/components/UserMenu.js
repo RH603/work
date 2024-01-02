@@ -12,9 +12,14 @@ function UserMenu() {
   };
 
   useEffect(() => {
+    if(!isOpen)  return;
     const handleClickOutside = () => setIsOpen(false);
 
     window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
   }, []);
 
   return (
