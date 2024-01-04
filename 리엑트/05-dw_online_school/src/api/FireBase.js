@@ -14,6 +14,7 @@ import {
   orderBy,
   limit,
   startAfter,
+  where,
   exists,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import {
@@ -42,12 +43,12 @@ async function getDatas(collectionName, options) {
   // const querySnapahot = await getDocs(collection(db, collectionName));
   let docQuery;
   if (options === undefined) {
-    const querySnapahot = await getDocs((collection(db, collectionName)))
-    const result = querySnapahot.docs.map((doc)=>({
+    const querySnapahot = await getDocs(collection(db, collectionName));
+    const result = querySnapahot.docs.map((doc) => ({
       docId: doc.id,
-      ...doc.data()
-    }))
-    return result
+      ...doc.data(),
+    }));
+    return result;
   } else if (options.lq === undefined) {
     docQuery = query(
       // asc 오름차순(생략가능) desc 내림차순
@@ -81,6 +82,30 @@ async function getDatas(collectionName, options) {
   });
 
   return { reviews, lastQuery };
+}
+
+async function getMember(values) {
+  const { id, password } = values;
+  let message;
+  let memberObj = {};
+
+  const docQuery = query(collection(db, "member"), where("id", "==", id));
+  const querySnapshot = await getDocs(docQuery);
+  if (querySnapshot.docs.length !== 0) {
+    const memberData = querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...doc.data(),
+    }))[0];
+    if (memberData.password == password) {
+      memberObj = memberData;
+    } else {
+      message = "비밀번호가 일치하지 않습니다.";
+    }
+  } else {
+    message = "일치하는 아이디가 없습니다.";
+  }
+
+  return { memberObj, message };
 }
 
 async function addDatas(collectionName, formData) {
@@ -212,4 +237,5 @@ export {
   addDatas,
   deleteDatas,
   updateDatas,
+  getMember,
 };

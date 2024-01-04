@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import personIcon from "../assets/person.png";
 import styles from "./UserMenu.module.css";
 import { useState, useEffect } from "react";
+import { useMember } from "../contexts/MemberContext";
 
 function UserMenu() {
+  const member = useMember();
   const [isOpen, setIsOpen] = useState(false);
-
   const handleButtonClick = (e) => {
     // 버블링 현상을 막아준다 stopPropagation
     e.stopPropagation();
@@ -12,7 +14,7 @@ function UserMenu() {
   };
 
   useEffect(() => {
-    if(!isOpen)  return;
+    if (!isOpen) return;
     const handleClickOutside = () => setIsOpen(false);
 
     window.addEventListener("click", handleClickOutside);
@@ -20,7 +22,7 @@ function UserMenu() {
     return () => {
       window.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <div className={styles.userMenu}>
@@ -29,9 +31,15 @@ function UserMenu() {
       </button>
       {isOpen && (
         <ul className={styles.popup}>
-          <li>위시리스트</li>
+          <Link to="/wishlist">
+            <li>위시리스트</li>
+          </Link>
           <li className={styles.disabled}>회원가입</li>
-          <li>로그인</li>
+          <Link to="/login">
+            <li>
+              {member ? "로그인":"로그인"}
+              </li>
+          </Link>
         </ul>
       )}
     </div>
