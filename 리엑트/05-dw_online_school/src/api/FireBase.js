@@ -16,6 +16,8 @@ import {
   startAfter,
   where,
   exists,
+  arrayUnion,
+  arrayRemove,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import {
   getStorage,
@@ -83,6 +85,20 @@ async function getDatas(collectionName, options) {
 
   return { reviews, lastQuery };
 }
+async function getData(collectionName, fieldName, condition, value) {
+  const docQuery = query(
+    collection(db, collectionName),
+    where(fieldName, condition, value)
+  );
+
+  const querySnapshot = await getDocs(docQuery);
+  const data = querySnapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return data.length === 1 ? data[0] : data;
+}
 
 async function getMember(values) {
   const { id, password } = values;
@@ -143,40 +159,26 @@ async function addDatas(collectionName, formData) {
   }
 }
 
-async function updateDatas(collectionName, formData, docId, imgUrl) {
-  const docRef = await doc(db, collectionName, docId);
-  const time = new Date().getTime();
-
-  const updateFormData = {
-    title: formData.title,
-    content: formData.content,
-    rating: formData.rating,
-    updatedAt: time,
-  };
-
-  // 사진 파일을 바꾸었을때
-  if (formData.imgUrl !== null) {
-    const uuid = crypto.randomUUID();
-    const path = `movie/${uuid}`;
-    const url = await uploadImage(path, formData.imgUrl);
-
-    // 기존 사진 삭제하기
-    const storage = getStorage();
-    try {
-      const deleteRef = ref(storage, imgUrl);
-      await deleteObject(deleteRef);
-    } catch {
-      return null;
+async function updateDatas(collectionName, docId, updateData, options) {
+  const docRef = doc(db, collectionName, docId);
+  try {
+    if (options) {
+      if (options.type == "ADD") {
+        await updateDoc(docRef, {
+          [options.fieldName]: arrayUnion(updateData),
+        });
+      } else if (options.type == "DELETE") {
+        await updateDoc(docRef, {
+          [options.fieldName]: arrayRemove(updateData),
+        });
+      }
+    } else {
+      await updateDoc(docRef, updateData);
     }
-
-    // 가져온 사진 경로  updateInfoObj의 imgUrl 에 셋팅하기
-    updateFormData.imgUrl = url;
+    return true
+  } catch (error) {
+    return false
   }
-  // 문서 필드 수정
-  await updateDoc(docRef, updateFormData);
-  const docData = await getDoc(docRef);
-  const review = { docId: docData.id, ...docData.data() };
-  return { review };
 }
 
 async function deleteDatas(collectionName, docID, imgUrl) {
@@ -238,4 +240,5 @@ export {
   deleteDatas,
   updateDatas,
   getMember,
+  getData,
 };

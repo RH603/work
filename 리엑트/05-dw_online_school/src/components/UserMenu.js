@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 import { useMember } from "../contexts/MemberContext";
 
 function UserMenu() {
-  const member = useMember();
+  // const member = useMember();
   const [isOpen, setIsOpen] = useState(false);
+  const isLogined = JSON.parse(localStorage.getItem("member"));
+  console.log(isLogined);
   const handleButtonClick = (e) => {
     // 버블링 현상을 막아준다 stopPropagation
     e.stopPropagation();
@@ -35,11 +37,15 @@ function UserMenu() {
             <li>위시리스트</li>
           </Link>
           <li className={styles.disabled}>회원가입</li>
-          <Link to="/login">
-            <li>
-              {member ? "로그인":"로그인"}
-              </li>
-          </Link>
+          {!isLogined ? (
+            <Link to="/login">
+              <li>로그인</li>
+            </Link>
+          ) : (
+            <Link to="/logout">
+              <li>로그아웃</li>
+            </Link>
+          )}
         </ul>
       )}
     </div>
