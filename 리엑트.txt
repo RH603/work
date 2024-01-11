@@ -1,5 +1,13 @@
 https://www.gdweb.co.kr/main/
 
+구글 MAP API KEY
+AIzaSyCi36s8SAwoRdUQLvVgdvbGrzx84AcMNn4
+구글 지도
+npm install @googlemaps/react-wrapper
+
+npm install react-google-maps
+
+
 리엑트 설치
 
 1. 인터넷 창에서 node.js 설치 LTS 버전
@@ -17,6 +25,7 @@ https://www.gdweb.co.kr/main/
    npm install classnames  
    npm install react-router-dom@+버전 숫자  라우터 준비
   npm install styled-components 스타일 모듈
+npm install react-kakao-maps-sdk 카카오 지도 
 
 7. npm run start
 
