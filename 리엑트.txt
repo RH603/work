@@ -5,7 +5,7 @@ AIzaSyCi36s8SAwoRdUQLvVgdvbGrzx84AcMNn4
 구글 지도
 npm install @googlemaps/react-wrapper
 
-npm install react-google-maps
+npm install @react-google-maps
 
 
 리엑트 설치
