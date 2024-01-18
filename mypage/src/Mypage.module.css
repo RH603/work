@@ -1,0 +1,151 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffd8b6;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.text {
+    font-size: 16px;
+}
+
+/* 1번째 div */
+
+.profileContainer {
+    width: 100%;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 3fr; */
+    gap: 24px;
+}
+
+.menuBar {
+    width: 341px;
+    height: 958px;
+    background-color: #f8f8f8;
+    padding: 100px 0 100px 50px;
+}
+
+.userInfo {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 100px;
+    align-items: flex-start;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+/* menubar Css */
+.profile {
+    width: 1071px;
+    height: 100%;
+    background-color: dodgerblue;
+    padding: 100px 0;
+    /* text-align: center; */
+}
+
+.box {
+    width: 586px;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+    padding-bottom  : 100px;
+}
+
+.box2{
+    width: 586px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.change {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.change>h2 {
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.profileChange {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* profile */
+.adr {
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 100px; */
+}
+
+.input {
+    width: 100%;
+    height: 60px;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 100px;
+}
+
+/* 주소변경 */
+
+.btn {
+    margin: 0 auto;
+    background-color: #1e326d;
+    color: #fff;
+}
+
+/*  */
+.box:last-child {
+    border: none;
+}
+
+.box > h2 {
+    text-align: center;
+    /* margin-bottom: 50px; */
+}
+
+.changeBtn{
+    margin-top: 50px;
+}
+
+.pwBtn{
+    display: flex;
+    flex-direction: column;
+}

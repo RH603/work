@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "create-react-app": "^5.0.1",
-    "react-google-maps": "^9.4.5",
-    "styled-components": "^6.1.6"
-  }
-}

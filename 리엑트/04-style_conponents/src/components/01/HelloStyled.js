@@ -3,7 +3,7 @@ import Button from "./Button"
 function HelloStyled() {
   return (
     <div>
-      <Button>Hello styled!!</Button>
+      <Button value="400">Hello styled!!</Button>
     </div>
   );
 }
