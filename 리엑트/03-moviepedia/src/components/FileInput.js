@@ -45,7 +45,7 @@ function FileInput({ onChange, name, value, initialPreview }) {
   return (
     <div className="FileInput">
       {/* img태그를 사용할때 div태그 안에 넣어야 한다.  */}
-      <img className={`FileInput-preview ${preview ? "selected" : ""}`} src={preview} alt="이미지 미리보기" />
+      <img className={`FileInput-preview ${preview ? "selected" : ""}`} src={preview} alt="" />
       {/* accept 파일 제한 하는 속성 */}
       <input
         className="FileInput-hidden-overlay"

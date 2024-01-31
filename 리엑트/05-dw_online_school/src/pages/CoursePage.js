@@ -46,6 +46,7 @@ function CoursePage() {
         type : "ADD",
         fieldName : "courseList"
       });
+      console.log(course)
       if(result) navigate("/wishlist")
     } else {
       alert("로그인해주세요");

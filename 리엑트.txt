@@ -8,6 +8,10 @@ npm install @googlemaps/react-wrapper
 npm install @react-google-maps
 
 
+선생님 이메일
+kjy.devops@gmail.com
+자소서 포트폴리오 보내기
+
 리엑트 설치
 
 1. 인터넷 창에서 node.js 설치 LTS 버전
